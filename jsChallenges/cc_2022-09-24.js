@@ -8,7 +8,7 @@ function abbrevName(name){
       initials.push(word[0]) ;
     })
     //join the new array with '.'
-    initials = initials.join ('.')
+    initials = initials.join ('.').toUpperCase();
     //return the initials
     return initials;
   
