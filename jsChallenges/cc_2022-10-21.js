@@ -4,6 +4,36 @@
  * @return {boolean}
  */
 var containsNearbyDuplicate = function(nums, k) {
+    let check = false;
+    //get all indexes of what is in each position.
+    for(let i=nums.length-1; i>0; i--){
+        let indexes = getAllIndexes(nums, nums[i]);
+        console.log(indexes)
+        if(indexes.length===2 && Math.abs(indexes[1]-indexes[0])<=k){
+            check = true;
+        }
+    }
+    return check;
+};
+function getAllIndexes(arr, val){
+    const indexes=[];
+    for(let i = 0; i<arr.length; i++){
+        if(arr[i]===val){
+            indexes.push(i);
+        }
+        
+    }
+    return indexes;
+}
+
+
+
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {boolean}
+ */
+var containsNearbyDuplicate = function(nums, k) {
     let check=false;
     if(1<=nums.length && nums.length <= Math.pow(10,5)){
         for(let i=0; i<nums.length; i++){
