@@ -1,13 +1,54 @@
+//constraints
+//1 <= nums.length <= 105
+//-109 <= nums[i] <= 109
+//0 <= k <= 105
+
+/* tips from Nate
+*Leave the loop as soon as it is true
+*Loop only once
+*trail behind
+*/
+function containsNearbyDuplicate(nums,k){
+    if(1 > nums.length || nums.length > Math.pow(10,5)){
+        return false;
+    };
+    if(k < 0 || k> Math.pow(10,5)){
+        return false;
+    };
+    for(let i = 0; i<nums.length; i++){
+        if(nums[i]< -Math.pow(10,9) || nums[i] > Math.pow(10,9)){
+            return false;
+            break;
+        }else{
+            let indexes = [];
+            indexes = getAllIndexes(nums, nums[i]);
+            if(indexes.length<=1){
+                return false;
+            }else{
+                for(let j = 0; j<nums.length; j++){
+                    if(j!==i && nums[j]===nums[i] && Math.abs(i-j)<=k){
+                        return true;
+                    };
+                };
+            };
+        };         
+    };
+};
+
+
+
+
+
 /**
  * 
  * Below worked, but then encountered runtime error
  * javascript heap out of memory
  */
-var containsNearbyDuplicate = function(nums, k) {
+var containsNearbyDuplicate6 = function(nums, k) {
     let check = [];
     //get all indexes of what is in each position.
     for(let i=nums.length-1; i>0; i--){
-        let indexes = getAllIndexes(nums, nums[i]);
+        let indexes = getAllIndexes2(nums, nums[i]);
         for(let j = indexes.length-1; j>0; j--){
             if(indexes[j]-indexes[j-1]<=k){
                 check.push(true);
@@ -16,7 +57,7 @@ var containsNearbyDuplicate = function(nums, k) {
     }
     return check.length>0;
 };
-function getAllIndexes(arr, val){
+function getAllIndexes2(arr, val){
     const indexes=[];
     for(let i = 0; i<arr.length; i++){
         if(arr[i]===val){
@@ -35,12 +76,12 @@ function getAllIndexes(arr, val){
  * used indexes
  * Wrong answer
  */
-var containsNearbyDuplicate = function(nums, k) {
+var containsNearbyDuplicate5 = function(nums, k) {
     let check = [];
     //get all indexes of what is in each position.
     for(let i=nums.length-1; i>0; i--){
         let indexes =[];
-        indexes = getAllIndexes(nums, nums[i]);
+        indexes = getAllIndexes1(nums, nums[i]);
         console.log(indexes)
         if(indexes.length >1 && Math.abs(indexes[0]-indexes[indexes.length-1])<=k){//!need to check distance of every duplicate
             check.push(true);
@@ -48,7 +89,7 @@ var containsNearbyDuplicate = function(nums, k) {
     }
     return check.length>0;
 };
-function getAllIndexes(arr, val){
+function getAllIndexes1(arr, val){
     const indexes=[];
     for(let i = 0; i<arr.length; i++){
         if(arr[i]===val){
