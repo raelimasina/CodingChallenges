@@ -7,6 +7,9 @@
 *Leave the loop as soon as it is true
 *Loop only once
 *trail behind
+*
+*this works, but not in cases like [1,0,1,1]
+*need to find a way to include such cases
 */
 function containsNearbyDuplicate(nums,k){
     if(1 > nums.length || nums.length > Math.pow(10,5)){
