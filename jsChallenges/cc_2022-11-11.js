@@ -30,4 +30,5 @@ var rotate = function(nums, k) {
         nums.unshift(shiftedVal);
     }
 };
-//leet code may be having issues....it isn't accepting my solution even though it accepted others that were almost identical.
+//leet code may be having issues....it isn't accepting my solution even though it accepted others that were almost identical. 
+//says all test cases passed. same thing happened the next day
